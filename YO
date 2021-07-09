@@ -1,5 +1,4 @@
 local alphabet = {
-    AspectEncrypt = "AspectEncrypt",
     a = "😳🔥🔥😳😳😳😳🔥",
     A = "😳🔥😳😳😳😳😳🔥",
     b = "😳🔥🔥😳😳😳🔥😳",
@@ -30,7 +29,7 @@ local alphabet = {
     N = "😳🔥😳😳🔥🔥🔥😳",
     o = "😳🔥🔥😳🔥🔥🔥🔥",
     O = "😳🔥😳😳🔥🔥🔥🔥",
-    p = "😳🔥🔥🔥😳😳😳😳",
+    p = "AspectEncrypt",
     P = "😳🔥😳🔥😳😳😳😳",
     q = "😳🔥🔥🔥😳😳😳🔥",
     Q = "😳🔥😳🔥😳😳😳🔥",
