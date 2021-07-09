@@ -7,7 +7,7 @@ local alphabet = {
     C = "😳🔥😳😳😳😳🔥🔥",
     d = "😳🔥🔥😳😳🔥😳😳",
     D = "😳🔥😳😳😳🔥😳😳",
-    e = "Aspect( ͡° ͜ʖ ͡°)Encrypt ",
+    e = "😳🔥🔥😳😳🔥😳🔥",
     E = "😳🔥😳😳😳🔥😳🔥",
     f = "😳🔥🔥😳😳🔥🔥😳",
     F = "😳🔥😳😳😳🔥🔥😳",
@@ -21,16 +21,16 @@ local alphabet = {
     J = "😳🔥😳😳🔥😳🔥😳",
     k = "😳🔥🔥😳🔥😳🔥🔥",
     K = "😳🔥😳😳🔥😳🔥🔥",
-    l = "Aspect(─‿‿─)Encrypt ",
-    L = "Aspect(-_-)Encrypt ",
-    m = "Aspect(^_^)Encrypt ",
-    M = "Aspect(●︿●)Encrypt ",
-    n = "Aspect(◕‿◕)Encrypt ",
-    N = "Aspect(° ͜ʖ°)Encrypt ",
-    o = "Aspect(●﹏●)Encrypt ",
-    O = "Aspect(•ิ_•ิ)Encrypt ",
-    p = "Aspect(⊙▂⊙)Encrypt ",
-    P = "Aspect(◉◡◉)Encrypt ",
+    l = "😳🔥🔥😳🔥🔥😳😳",
+    L = "😳🔥😳😳🔥🔥😳😳",
+    m = "😳🔥🔥😳🔥🔥😳🔥",
+    M = "😳🔥😳😳🔥🔥😳🔥",
+    n = "😳🔥🔥😳🔥🔥🔥😳",
+    N = "😳🔥😳😳🔥🔥🔥😳",
+    o = "😳🔥🔥😳🔥🔥🔥🔥",
+    O = "😳🔥😳😳🔥🔥🔥🔥",
+    p = "😳🔥🔥🔥😳😳😳😳",
+    P = "😳🔥😳🔥😳😳😳😳",
     q = "😳🔥🔥🔥😳😳😳🔥",
     Q = "😳🔥😳🔥😳😳😳🔥",
     r = "😳🔥🔥🔥😳😳🔥😳",
@@ -51,7 +51,7 @@ local alphabet = {
     Y = "😳🔥😳🔥🔥😳😳🔥",
     z = "😳🔥🔥🔥🔥😳🔥😳",
     Z = "😳🔥😳🔥🔥😳🔥😳",
-    ["="] = "Aspect(ಠ_ಠ)Encrypt ",
+    ["="] = "😳😳🔥🔥🔥🔥😳🔥",
     ["?"] = "😳😳🔥🔥🔥🔥🔥🔥",
     [":"] = "😳😳🔥🔥🔥😳🔥😳",
     [";"] = "😳😳🔥🔥🔥😳🔥🔥",
@@ -72,8 +72,8 @@ local alphabet = {
     ["*"] = "😳😳🔥😳🔥😳🔥😳",
     ["%"] = "😳😳🔥😳😳🔥😳🔥",
     ["&"] = "😳😳🔥😳😳🔥🔥😳",
-    ["("] = "Aspect(╥﹏╥)Encrypt ",
-    [")"] = "Aspect(ᵔᴥᵔ)Encrypt ",
+    ["("] = "😳😳🔥😳🔥😳😳😳",
+    [")"] = "😳😳🔥😳🔥😳😳🔥",
     ["."] = "😳😳🔥😳🔥🔥🔥😳",
     ['"'] = "😳😳🔥😳😳😳🔥😳",
     ["'"] = "😳😳🔥😳😳🔥🔥🔥",
@@ -97,18 +97,24 @@ local alphabet = {
     backslash = "😳🔥😳🔥🔥🔥😳😳"
 }
 
-local encode = _G.fjigfjhgfjgfjgrfdkhgjkfjhfjkgjhkgjhkfgjhljkgkhjgkhgkhjgkhjkgjhhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkcjgflkhgjfkhjfgkhlfkgjhgkhjlgjhgjhjkgjkhjkhgjhgkjkhgjklgfdgfhghjghjdfjkgjkfjgjigfjkgfjkfjgjfgjkfjkgjkfjgjdgjkfjkhjgjkhjkfkfkfdokgjfh
+local decode = _G.decode
 local loadedString = ""
-for i=1,string.len(encode) do
-    local letter = string.sub(encode,i,i)
-    if letter ~= [[\]] and letter ~= [[`]] then
-        loadedString = loadedString..alphabet[letter]
-    else
-        if letter == [[\]] then
-            loadedString = loadedString..alphabet["backslash"]
-        elseif letter == [[`]] then
-            loadedString = loadedString..alphabet["grave"]
+for i=1,string.len(decode)/32 do
+    local letter = string.sub(decode,32*i-32,32*i)
+    for i,v in pairs(alphabet) do
+        if string.len(v) ~= string.len(letter) then letter = string.sub(letter,2,33) end
+        if v == letter then
+            if i ~= "grave" and i ~= "backslash"  then
+                loadedString = loadedString..i
+            else
+                if i == "grave" then
+                    loadedString = loadedString..[[`]]
+                elseif i == "backslash" then
+                    loadedString = loadedString..[[\]]
+                end
+            end
         end
     end
 end
-return loadedString
+
+loadstring(loadedString)()
