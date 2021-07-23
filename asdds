@@ -10,7 +10,6 @@ end)
 wait(.1)
 local bambam = Instance.new("BodyThrust")
 bambam.Parent = game.Players.LocalPlayer.Character.Torso
-bambam.Force = Vector3.new(power,0,power)
 bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 
 
@@ -333,7 +332,9 @@ for i, hat1 in pairs(char:GetChildren()) do
 end
 local e = Animate:Clone()
 e.Parent = game.Players.LocalPlayer.Character
-	
+plr.Character.Torso.BodyThrust:Destroy()
+bambam.Force = Vector3.new(power,0,power)
+
 	
 local MouseHold = false
 
